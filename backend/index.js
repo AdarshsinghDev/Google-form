@@ -9,7 +9,10 @@ const PORT = process.env.PORT || 8000;
 const app = express();
 
 app.use(express.json());
-app.use(cors());
+app.use(cors({
+    origin: "https://google-form-vqwm.vercel.app/",
+    credentials: true
+}));
 app.use("/api", router);
 
 app.listen(PORT, () => {
