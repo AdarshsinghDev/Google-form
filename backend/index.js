@@ -13,6 +13,7 @@ app.use(cors({
     origin: "https://google-form-vqwm.vercel.app/",
     credentials: true
 }));
+
 app.use("/api", router);
 
 app.listen(PORT, () => {
