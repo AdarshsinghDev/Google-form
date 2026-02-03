@@ -10,7 +10,7 @@ const app = express();
 
 app.use(express.json());
 app.use(cors({
-    origin: "https://google-form-vqwm.vercel.app",
+    origin: "https://google-form-frontend-08i5.onrender.com",
     credentials: true
 }));
 
