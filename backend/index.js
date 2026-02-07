@@ -18,10 +18,12 @@ app.use(cors({
 app.use("/api/auth", authRouter);
 app.use("/api/form", formRouter);
 
-connectDb().then(() => {
+connectDb()
+  .then(() => {
     app.listen(PORT, () => {
-        console.log(`Server is running on Port: ${PORT}`)
-    })
-}).catch(err => {
-    console.error("DB Connection Failed:", err);
-});
+      console.log(`Server is running on Port: ${PORT}`);
+    });
+  })
+  .catch((err) => {
+    console.error("Database connection error:", err);
+  });
