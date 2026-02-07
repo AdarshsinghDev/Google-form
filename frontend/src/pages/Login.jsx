@@ -1,6 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 export default function Login() {
   const [form, setForm] = useState({
     email: "",
@@ -28,10 +28,9 @@ export default function Login() {
         email: "",
         password: "",
       });
+      navigate("/form")
     } catch (err) {
-      alert(err.response?.data?.message || "Signup failed");
-    } finally {
-      navigate("/form");
+      alert(err.response?.data?.message || "Login failed");
     }
   };
 
@@ -69,6 +68,7 @@ export default function Login() {
           >
             Login
           </button>
+          <NavLink className="text-white underline" to="/signup">Create an Account</NavLink>
         </form>
       </div>
     </div>

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 export default function Signup() {
   const [form, setForm] = useState({
     fullname: "",
@@ -36,10 +36,9 @@ export default function Signup() {
         skills: "",
         experience: "",
       });
+      navigate("/login")
     } catch (err) {
       alert(err.response?.data?.message || "Signup failed");
-    }finally{
-      navigate("/login")
     }
   };
 
@@ -118,6 +117,7 @@ export default function Signup() {
           >
             Sign Up
           </button>
+          <NavLink className="text-white underline"  to="/login">Already have an Account? Login </NavLink>
         </form>
       </div>
     </div>
