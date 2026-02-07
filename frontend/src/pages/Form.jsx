@@ -155,9 +155,21 @@ export default function MultiStepForm() {
     formData.incompleteReason,
     formData.nextAction,
   ]);
+
+  const logOut = () =>{
+    localStorage.removeItem("token")
+    localStorage.removeItem("loggedInUserNameStored")
+    localStorage.removeItem("loggedInEmailStored")
+    navigate("/login")
+  }
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50">
       <div className="pb-10 relative"></div>
+      <div className="flex items-center relative justify-center">
+        <button onClick={logOut} className="flex lg:absolute right-20 bg-gray-700 text-white font-semibold py-3 px-6 rounded-lg hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-400 transition duration-150 ease-in-out">
+          Log out
+        </button>
+      </div>
       <div className="flex items-center justify-center p-4 sm:p-6 lg:p-8">
         <div className="w-full max-w-2xl bg-white rounded-2xl shadow-xl p-6 sm:p-8 lg:p-10">
           <h1 className="mb-6">
