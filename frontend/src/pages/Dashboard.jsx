@@ -11,7 +11,7 @@ export default function Dashboard() {
     const getAllForms = async () => {
       try {
         const res = await axios.get(
-          `${import.meta.env.VITE_BACKEND_URL}/api/all`,
+          `${import.meta.env.VITE_BACKEND_URL}/api/form/all`,
         );
         setForms(res.data.data);
       } catch (error) {

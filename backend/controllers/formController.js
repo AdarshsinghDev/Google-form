@@ -1,17 +1,31 @@
-import { Form } from "../model/form.js";
+import { Form } from "../model/form.morning.js";
 
 export const submitForm = async (req, res) => {
 
     try {
-        // const { email, submissionType, employee, time, date, projectTask } = req.body;
-        const { email, submissionType } = req.body;
+        const { email, submissionType, employee, time, date, projectTask, yesterdayWork, todayDeliverables, hasBlockers, blockerDescription, deliveryStatus, completedSummary, incompleteReason, nextAction, additionalNotes } = req.body;
 
+        if (!email?.trim() || !submissionType?.trim()) {
+            return res.status(400).json({
+                success: false,
+                message: "Required fields missing"
+            });
+        }
+        const now = new Date();
 
-        const startofDay = new Date();
-        startofDay.setHours(0, 0, 0, 0);
+        const startofDay = new Date(Date.UTC(
+            now.getUTCFullYear(),
+            now.getUTCMonth(),
+            now.getUTCDate(),
+            0, 0, 0
+        ));
 
-        const endofDay = new Date();
-        endofDay.setHours(23, 59, 59, 999);
+        const endofDay = new Date(Date.UTC(
+            now.getUTCFullYear(),
+            now.getUTCMonth(),
+            now.getUTCDate(),
+            23, 59, 59, 999
+        ));
 
         const alreadySubmitted = await Form.findOne({
             email, submissionType, createdAt: {
@@ -20,14 +34,23 @@ export const submitForm = async (req, res) => {
             }
         })
         if (alreadySubmitted) {
-            return res.status(404).json({
+            return res.status(409).json({
                 message: `You have already submitted ${submissionType} stand-up today`,
                 success: false,
             });
         }
-        const newForm = await Form.create(req.body);
+
+        
+        const newForm = await Form.create({
+            email,
+            submissionType,
+            employee,
+            time,
+            date,
+            projectTask, yesterdayWork, todayDeliverables, hasBlockers, blockerDescription, deliveryStatus, completedSummary, incompleteReason, nextAction, additionalNotes
+        });
         console.log(`New Form Created: ${newForm}`);
-        return res.status(201).json({ message: "Form submited successfully", success: true })
+        return res.status(201).json({ message: "Submitted successfully", success: true })
     } catch (error) {
         res.status(500).json({
             success: false,
