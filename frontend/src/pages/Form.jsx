@@ -576,7 +576,7 @@ export default function MultiStepForm() {
                     htmlFor="additionalNotes"
                     className="block text-sm font-semibold text-gray-700 mb-2"
                   >
-                    4. Any Additional Notes
+                    4. Any Additional Notes (Optional)
                   </label>
                   <textarea
                     id="additionalNotes"
