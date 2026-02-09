@@ -252,25 +252,14 @@ export default function MultiStepForm() {
                         type="radio"
                         name="employee"
                         onChange={handleChange}
-                        value="emp1"
+                        value={loggedInUserName}
                         className="w-4 h-4 text-indigo-600 focus:ring-indigo-500"
                       />
                       <span className="ml-3 text-sm font-medium text-gray-700">
                         {loggedInUserName}
                       </span>
                     </label>
-                    <label className="flex items-center p-4 border-2 border-gray-200 rounded-lg cursor-pointer hover:bg-indigo-50 hover:border-indigo-300 transition duration-150 ease-in-out">
-                      <input
-                        type="radio"
-                        name="employee"
-                        onChange={handleChange}
-                        value="emp2"
-                        className="w-4 h-4 text-indigo-600 focus:ring-indigo-500"
-                      />
-                      <span className="ml-3 text-sm font-medium text-gray-700">
-                        Rahul singh
-                      </span>
-                    </label>
+                  
                   </div>
                 </div>
 
